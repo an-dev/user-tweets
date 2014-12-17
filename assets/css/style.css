@@ -1,0 +1,21 @@
+body{background: url("/static/img/bg.png") left top repeat-x #C0DEED;}
+.container {
+	background: url("/static/img/simo.jpeg") no-repeat scroll center top;
+	max-height: 640px;
+	min-height: 640px;
+	max-width: 638px;
+	padding: 5%;
+	position: relative;
+}
+.content{
+	position: absolute;
+	bottom: 15%;
+	max-width: 80%;
+	min-width: 80%;
+}
+.content h3{
+	font-size: 2.175em;
+	line-height: 1.2;
+}
+a, a:hover, a:visited{ color:#222; text-decoration:none; }
+.fa-twitter{color:#0084B4;font-size:1.6em;}

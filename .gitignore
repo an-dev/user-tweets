@@ -1,0 +1,4 @@
+venv/
+local/settings.py
+*.sublime-project
+*.sublime-workspace
