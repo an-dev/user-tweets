@@ -1,4 +1,3 @@
-#import json
 ##########################################################
 #	First Populate of the db (Run this only first time!)
 ##########################################################
@@ -8,13 +7,15 @@ from random import random
 from local import settings
 
 client = MongoClient(settings.MONGO_CLIENT)
-db = client.twitter
+db      = client.twitter
+
 db.authenticate(settings.AUTH_USR, settings.AUTH_PWD)
 
-CONSUMER_KEY=settings.CONSUMER_KEY
-CONSUMER_SECRET=settings.CONSUMER_SECRET
-ACCESS_KEY=settings.ACCESS_KEY
-ACCESS_SECRET=settings.ACCESS_SECRET
+CONSUMER_KEY          = settings.CONSUMER_KEY
+CONSUMER_SECRET    = settings.CONSUMER_SECRET
+ACCESS_KEY                 = settings.ACCESS_KEY
+ACCESS_SECRET           = settings.ACCESS_SECRET
+
 tweets = []
 
 def get_specific(tweet_list):
@@ -22,10 +23,13 @@ def get_specific(tweet_list):
 		if t.in_reply_to_screen_name is None:
 			print 'inserting tweets'
 			tweets.append(t)	
-			db.tweets.insert({'tweet_id': t.id, 'text': t.text, 'random':[random(), 0]})
-			#print json.dumps({'tweet_id': t.id, 'text': t.text}, indent=2, separators=(',', ': '))
+			db.tweets.insert({
+				'tweet_id': t.id, 
+				'text': t.text, 
+				'random': [random(), 0]})
 
 def get_all_tweets(screen_name):
+	
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 	api = tweepy.API(auth)
