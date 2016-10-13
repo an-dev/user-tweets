@@ -1,4 +1,10 @@
-venv/
-local/settings.py
-*.sublime-project
-*.sublime-workspace
+*.pyc
+*venv/
+.project
+.pydevproject
+temp/
+*.sqlite3
+.settings
+media/
+static/
+.idea/
