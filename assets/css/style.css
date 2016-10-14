@@ -1,6 +1,6 @@
 body{background: url("/static/img/bg.png") left top repeat-x #C0DEED;}
 .container {
-	background: url("/static/img/simo.jpeg") no-repeat scroll center top;
+	background: url("/static/img/user.jpeg") no-repeat scroll center top;
 	max-height: 640px;
 	min-height: 640px;
 	max-width: 638px;

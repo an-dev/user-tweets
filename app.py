@@ -4,7 +4,7 @@ try:
 except:
     pass
 
-import settings
+from scripts.settings import HOST, PORT
 
 from bottle import route, run, view, TEMPLATE_PATH, static_file
 from scripts.common import mongo_connector
@@ -35,4 +35,4 @@ def index():
 
     return dict(tweet=tweet[0]['text'])
 
-run(server='gevent', host=settings.HOST, port=settings.PORT)
+run(server='gevent', host=HOST, port=PORT)
