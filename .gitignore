@@ -4,7 +4,7 @@
 .pydevproject
 temp/
 *.sqlite3
-.settings
+.settings 
 media/
 static/
 .idea/
