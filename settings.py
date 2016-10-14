@@ -1,6 +1,7 @@
 # Settings file
 
 MONGO_CLIENT = None
+MONGO_DB_NAME = 'twitter'
 
 AUTH_USR = None
 AUTH_PWD = None

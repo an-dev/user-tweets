@@ -9,7 +9,7 @@ from settings import *
 
 def mongo_connector():
     client = MongoClient(MONGO_CLIENT)
-    db      = client.twitter
+    db      = client[MONGO_DB_NAME]
     db.authenticate(AUTH_USR, AUTH_PWD)
 
     return db
