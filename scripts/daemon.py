@@ -3,7 +3,7 @@
 ###########################################
 
 import settings
-from common import get_tweets
+from common import insert_latest_tweets
 
 if __name__ == '__main__':
-    get_tweets(settings.TARGET_USR)
+    insert_latest_tweets(settings.TARGET_USR)

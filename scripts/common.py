@@ -9,16 +9,24 @@ from settings import *
 
 def mongo_connector():
     client = MongoClient(MONGO_CLIENT)
-    db      = client[MONGO_DB_NAME]
+    db = client[MONGO_DB_NAME]
     db.authenticate(AUTH_USR, AUTH_PWD)
 
     return db
 
-db = mongo_connector()
+
+def tweepy_connector():
+    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
+    api = tweepy.API(auth)
+
+    return api
+
+db  = mongo_connector()
+api = tweepy_connector()
 
 
 def insert_tweets(tweet_list):
-
     tweets = []
 
     for t in tweet_list:
@@ -34,10 +42,27 @@ def insert_tweets(tweet_list):
     return tweets
 
 
-def get_latest_tweets(screen_name):
-    auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-    auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-    api = tweepy.API(auth)
+def insert_all_tweets(screen_name):
+
+    print 'looking for tweets'
+
+    recent = api.user_timeline(screen_name=screen_name, count=200)
+
+    tweets = insert_tweets(recent)
+
+    oldest = tweets[-1].id - 1
+
+    while len(recent) > 0:
+        print 'getting old tweets'
+
+        recent = api.user_timeline(screen_name=screen_name, count=200, max_id=oldest)
+
+        _ = insert_tweets(recent)
+
+        oldest = tweets[-1].id - 1
+
+
+def insert_latest_tweets(screen_name):
 
     last_tweet = list(db.tweets.find().sort('tweet_id', DESCENDING).limit(1))
 
@@ -46,10 +71,6 @@ def get_latest_tweets(screen_name):
     recent = api.user_timeline(screen_name=screen_name, count=200, since_id=last_tweet[0]['tweet_id'])
 
     if recent:
-        insert_tweets(recent)
+        _ = insert_tweets(recent)
     else:
         print 'no new tweets!'
-
-
-def get_all_tweets(screen_name):
-    pass
