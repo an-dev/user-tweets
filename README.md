@@ -13,4 +13,5 @@ I developed this for a friend, so please don't take this _too_ seriously.
 * Create a specific app on the twitter dev site, and generate appropriate tokens
 * Set string values into scripts/setting
 * Configure username in index.tpl file
+* Add appropriate user image as user.png
 * Run wuth `python app.py`
